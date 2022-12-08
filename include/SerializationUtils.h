@@ -30,6 +30,9 @@
 
 #include <vector>
 
+// TODO: in order to remove that insert std:: prefix before EVERY call to std object/function
+using namespace std;
+
 namespace ORB_SLAM3
 {
 

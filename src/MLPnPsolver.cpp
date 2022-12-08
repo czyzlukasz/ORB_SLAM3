@@ -47,6 +47,7 @@
 ******************************************************************************/
 
 #include "MLPnPsolver.h"
+#include "Random.h"
 
 #include <Eigen/Sparse>
 

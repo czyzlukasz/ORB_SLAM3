@@ -20,6 +20,8 @@
 
 #include "System.h"
 #include "Converter.h"
+#include "BowVectorSerializer.hpp"
+#include <TemplatedVocabulary.h>
 #include <thread>
 #include <pangolin/pangolin.h>
 #include <iomanip>

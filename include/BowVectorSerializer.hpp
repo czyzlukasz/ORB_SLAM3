@@ -16,19 +16,27 @@
 * If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef BOWVECTORSERIALIZER_HPP
+#define BOWVECTORSERIALIZER_HPP
 
-#ifndef ORBVOCABULARY_H
-#define ORBVOCABULARY_H
+#include "BowVector.h"
 
-#include"DBoW2/FORB.h"
-#include"TemplatedVocabulary.h"
+namespace boost {
+namespace serialization {
 
-namespace ORB_SLAM3
+template<class Archive>
+void serialize(Archive & ar, DBoW2::BowVector & g, const unsigned int version)
 {
+  ar & boost::serialization::base_object<std::map<DBoW2::WordId, DBoW2::WordValue> >(g);
+}
 
-typedef TemplatedVocabulary<DBoW2::FORB::TDescriptor, DBoW2::FORB>
-  ORBVocabulary;
+template<class Archive>
+void serialize(Archive & ar, DBoW2::FeatureVector & g, const unsigned int version)
+{
+  ar & boost::serialization::base_object<std::map<DBoW2::NodeId, std::vector<unsigned int>> >(g);
+}
 
-} //namespace ORB_SLAM
+} // namespace serialization
+} // namespace boost
 
-#endif // ORBVOCABULARY_H
+#endif //BOWVECTORSERIALIZER_HPP
