@@ -139,6 +139,7 @@ target_link_libraries(${PROJECT_NAME}
         types_sba
         types_sim3
 
+        sophus
         DLib
         -lboost_serialization
         -lcrypto
