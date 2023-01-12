@@ -34,7 +34,6 @@
 #include <mutex>
 #include <chrono>
 
-
 using namespace std;
 
 namespace ORB_SLAM3
@@ -3027,16 +3026,16 @@ bool Tracking::TrackLocalMap()
     // Decide if the tracking was succesful
     // More restrictive if there was a relocalization recently
     mpLocalMapper->mnMatchesInliers=mnMatchesInliers;
-    if(mCurrentFrame.mnId<mnLastRelocFrameId+mMaxFrames && mnMatchesInliers<50)
+    if(mCurrentFrame.mnId<mnLastRelocFrameId+mMaxFrames && mnMatchesInliers<matchedInliersTh)
         return false;
 
-    if((mnMatchesInliers>10)&&(mState==RECENTLY_LOST))
+    if((mnMatchesInliers > static_cast<int>(matchedInliersTh/4))&&(mState==RECENTLY_LOST))
         return true;
 
 
     if (mSensor == System::IMU_MONOCULAR)
     {
-        if((mnMatchesInliers<15 && mpAtlas->isImuInitialized())||(mnMatchesInliers<50 && !mpAtlas->isImuInitialized()))
+        if((mnMatchesInliers < static_cast<int>(matchedInliersTh/3) && mpAtlas->isImuInitialized())||(mnMatchesInliers<matchedInliersTh && !mpAtlas->isImuInitialized()))
         {
             return false;
         }
@@ -3045,7 +3044,7 @@ bool Tracking::TrackLocalMap()
     }
     else if (mSensor == System::IMU_STEREO || mSensor == System::IMU_RGBD)
     {
-        if(mnMatchesInliers<15)
+        if(mnMatchesInliers < static_cast<int>(matchedInliersTh/3))
         {
             return false;
         }
@@ -3054,7 +3053,7 @@ bool Tracking::TrackLocalMap()
     }
     else
     {
-        if(mnMatchesInliers<30)
+        if(mnMatchesInliers < static_cast<int>(matchedInliersTh/2))
             return false;
         else
             return true;
@@ -3127,7 +3126,7 @@ bool Tracking::NeedNewKeyFrame()
     bNeedToInsertClose = (nTrackedClose<100) && (nNonTrackedClose>70);
 
     // Thresholds
-    float thRefRatio = 0.75f;
+    float thRefRatio = static_cast<float>(thRefRatioL);
     if(nKFs<2)
         thRefRatio = 0.4f;
 
@@ -3140,16 +3139,16 @@ bool Tracking::NeedNewKeyFrame()
     }*/
 
     if(mSensor==System::MONOCULAR)
-        thRefRatio = 0.9f;
+        thRefRatio = static_cast<float>(thRefRatioH);
 
-    if(mpCamera2) thRefRatio = 0.75f;
+    if(mpCamera2) thRefRatio = static_cast<float>(thRefRatioL);
 
     if(mSensor==System::IMU_MONOCULAR)
     {
         if(mnMatchesInliers>350) // Points tracked from the local map
-            thRefRatio = 0.75f;
+            thRefRatio = static_cast<float>(thRefRatioL);
         else
-            thRefRatio = 0.90f;
+            thRefRatio = static_cast<float>(thRefRatioH);
     }
 
     // Condition 1a: More than "MaxFrames" have passed from last keyframe insertion
@@ -4122,5 +4121,20 @@ void Tracking::Release()
     mbStopRequested = false;
 }
 #endif
+
+void Tracking::setMatchedInliersTh(int newValue)
+{
+    matchedInliersTh = newValue;
+}
+
+void Tracking::setThRefRatioL(float newValue)
+{
+    thRefRatioL = newValue;
+}
+
+void Tracking::setThRefRatioH(float newValue)
+{
+    thRefRatioH = newValue;
+}
 
 } //namespace ORB_SLAM

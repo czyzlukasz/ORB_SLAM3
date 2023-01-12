@@ -186,6 +186,9 @@ public:
 
     float GetImageScale();
 
+    void setTrackingParam(float thRefRatioL);
+    void setTrackingParam(int matchedInliersTh, float thRefRatioL, float thRefRatioH);
+
 #ifdef REGISTER_TIMES
     void InsertRectTime(double& time);
     void InsertResizeTime(double& time);
