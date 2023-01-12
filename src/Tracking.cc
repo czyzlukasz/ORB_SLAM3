@@ -3126,7 +3126,7 @@ bool Tracking::NeedNewKeyFrame()
     bNeedToInsertClose = (nTrackedClose<100) && (nNonTrackedClose>70);
 
     // Thresholds
-    float thRefRatio = static_cast<float>(thRefRatioL);
+    float thRefRatio = thRefRatioL;
     if(nKFs<2)
         thRefRatio = 0.4f;
 
@@ -3139,16 +3139,16 @@ bool Tracking::NeedNewKeyFrame()
     }*/
 
     if(mSensor==System::MONOCULAR)
-        thRefRatio = static_cast<float>(thRefRatioH);
+        thRefRatio = thRefRatioH;
 
-    if(mpCamera2) thRefRatio = static_cast<float>(thRefRatioL);
+    if(mpCamera2) thRefRatio = thRefRatioL;
 
     if(mSensor==System::IMU_MONOCULAR)
     {
         if(mnMatchesInliers>350) // Points tracked from the local map
-            thRefRatio = static_cast<float>(thRefRatioL);
+            thRefRatio = thRefRatioL;
         else
-            thRefRatio = static_cast<float>(thRefRatioH);
+            thRefRatio = thRefRatioH;
     }
 
     // Condition 1a: More than "MaxFrames" have passed from last keyframe insertion
