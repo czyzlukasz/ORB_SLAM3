@@ -3026,6 +3026,7 @@ bool Tracking::TrackLocalMap()
     // Decide if the tracking was succesful
     // More restrictive if there was a relocalization recently
     mpLocalMapper->mnMatchesInliers=mnMatchesInliers;
+
     if(mCurrentFrame.mnId<mnLastRelocFrameId+mMaxFrames && mnMatchesInliers<matchedInliersTh)
         return false;
 
@@ -3035,6 +3036,7 @@ bool Tracking::TrackLocalMap()
 
     if (mSensor == System::IMU_MONOCULAR)
     {
+
         if((mnMatchesInliers < static_cast<int>(matchedInliersTh/3) && mpAtlas->isImuInitialized())||(mnMatchesInliers<matchedInliersTh && !mpAtlas->isImuInitialized()))
         {
             return false;
