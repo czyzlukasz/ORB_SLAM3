@@ -1547,5 +1547,15 @@ string System::CalculateCheckSum(string filename, int type)
     return checksum;
 }
 
+void System::setTrackingParam(float thRefRatioL){
+    mpTracker->setThRefRatioL(thRefRatioL);
+}
+
+void System::setTrackingParam(int matchedInliersTh, float thRefRatioL, float thRefRatioH){
+    mpTracker->setMatchedInliersTh(matchedInliersTh);
+    mpTracker->setThRefRatioL(thRefRatioL);
+    mpTracker->setThRefRatioH(thRefRatioH);
+}
+
 } //namespace ORB_SLAM
 

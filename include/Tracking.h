@@ -115,6 +115,10 @@ public:
     bool stopRequested();
 #endif
 
+    void setMatchedInliersTh(int newValue);
+    void setThRefRatioL(float newValue);
+    void setThRefRatioH(float newValue);
+
 public:
 
     // Tracking states
@@ -365,6 +369,10 @@ protected:
     bool mbNotStop;
     std::mutex mMutexStop;
 #endif
+
+    int matchedInliersTh{50};
+    float thRefRatioL{0.75};
+    float thRefRatioH{0.9};
 
 public:
     cv::Mat mImRight;
