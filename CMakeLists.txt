@@ -39,7 +39,7 @@ FetchContent_Declare(
 FetchContent_Declare(
         Sophus
         GIT_REPOSITORY https://github.com/strasdat/Sophus.git
-        GIT_TAG master
+        GIT_TAG v22.10
 )
 FetchContent_Declare(
         Pangolin
