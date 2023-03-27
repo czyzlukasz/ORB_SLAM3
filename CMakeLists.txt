@@ -18,9 +18,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
-find_package(OpenCV 4.4)
+find_package(OpenCV 4.2)
 if (NOT OpenCV_FOUND)
-    message(FATAL_ERROR "OpenCV > 4.4 not found.")
+    message(FATAL_ERROR "OpenCV > 4.2 not found.")
 endif ()
 
 MESSAGE("OPENCV VERSION:")
