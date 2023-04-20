@@ -19,7 +19,7 @@
 #ifndef BOWVECTORSERIALIZER_HPP
 #define BOWVECTORSERIALIZER_HPP
 
-#include "BowVector.h"
+#include "DBoW2/BowVector.h"
 
 namespace boost {
 namespace serialization {
