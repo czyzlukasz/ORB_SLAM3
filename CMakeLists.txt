@@ -27,7 +27,11 @@ MESSAGE("OPENCV VERSION:")
 MESSAGE(${OpenCV_VERSION})
 
 find_package(Eigen3 3.1.0 REQUIRED)
-find_package(DBoW2 g2o Sophus Pangolin DLib REQUIRED)
+find_package(DBoW2 REQUIRED)
+find_package(g2o REQUIRED)
+find_package(Sophus REQUIRED)
+find_package(Pangolin REQUIRED)
+find_package(DLib REQUIRED)
 find_package(realsense2)
 
 include_directories(
