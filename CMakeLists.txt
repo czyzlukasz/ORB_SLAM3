@@ -25,6 +25,36 @@ endif ()
 MESSAGE("OPENCV VERSION:")
 MESSAGE(${OpenCV_VERSION})
 
+include(FetchContent)
+FetchContent_Declare(
+        DBoW2
+        GIT_REPOSITORY https://github.com/dorian3d/DBoW2.git
+        GIT_TAG master
+)
+FetchContent_Declare(
+        g2o
+        GIT_REPOSITORY https://github.com/RainerKuemmerle/g2o.git
+        GIT_TAG master
+)
+FetchContent_Declare(
+        Sophus
+        GIT_REPOSITORY https://github.com/strasdat/Sophus.git
+        GIT_TAG 1.22.10
+)
+FetchContent_Declare(
+        Pangolin
+        GIT_REPOSITORY https://github.com/stevenlovegrove/Pangolin.git
+        GIT_TAG v0.6
+)
+
+FetchContent_Declare(
+        DLib
+        GIT_REPOSITORY https://github.com/dorian3d/DLib.git
+        GIT_TAG master
+)
+
+FetchContent_MakeAvailable(DBoW2 g2o Sophus Pangolin DLib)
+
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(DBoW2 REQUIRED)
 find_package(g2o REQUIRED)
