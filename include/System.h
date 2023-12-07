@@ -211,10 +211,11 @@ private:
     // KeyFrame database for place recognition (relocalization and loop detection).
     KeyFrameDatabase* mpKeyFrameDatabase;
 
+public:
     // Map structure that stores the pointers to all KeyFrames and MapPoints.
     //Map* mpMap;
     Atlas* mpAtlas;
-
+private:
     // Tracker. It receives a frame and computes the associated camera pose.
     // It also decides when to insert a new keyframe, create some new MapPoints and
     // performs relocalization if tracking fails.
