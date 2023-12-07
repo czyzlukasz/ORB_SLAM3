@@ -139,7 +139,8 @@ target_link_libraries(${PROJECT_NAME}
         types_sba
         types_sim3
 	types_slam3d
-
+        
+        Sophus::Sophus
         DLib
         -lboost_serialization
         -lcrypto
