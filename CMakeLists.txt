@@ -56,12 +56,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(DBoW2 g2o Sophus Pangolin DLib)
 
 find_package(Eigen3 3.1.0 REQUIRED)
-find_package(DBoW2 REQUIRED)
-find_package(g2o REQUIRED)
-find_package(Sophus REQUIRED)
 find_package(Pangolin REQUIRED)
-find_package(DLib REQUIRED)
-find_package(fmt REQUIRED)
 find_package(realsense2)
 
 include_directories(
@@ -141,13 +136,11 @@ target_link_libraries(${PROJECT_NAME}
         ${Pangolin_LIBRARIES}
         DBoW2
         # g2o specific libraries
-        g2o_types_sba
-        g2o_types_sim3
-	g2o_types_slam3d
-	g2o_core
+        types_sba
+        types_sim3
+	types_slam3d
 
         DLib
-	fmt::fmt
         -lboost_serialization
         -lcrypto
         )
